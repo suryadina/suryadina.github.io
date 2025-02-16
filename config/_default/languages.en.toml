@@ -3,20 +3,20 @@ languageName = "English"
 languageDirection = "ltr"
 weight = 1
 
-title = "ardya suryadinata"
+title = "suryadina.com"
 # copyright = "Copy, _right?_ :thinking_face:"
 
 [params]
   dateFormat = "2 January 2006"
 
-  # mainSections = ["section1", "section2"]
-  # description = "My awesome website"
+  mainSections = ["section1", "section2"]
+  description = "☕ 💻 and security"
 
 [params.author]
   name = "@suryadina"
   # image = "img/author.jpg"
-  headline = "real persona docs, not an AI"
-  bio = "coffee, tech, cybersecurity"
+  headline = "real personal docs, not an AI"
+  bio = "coffee, tech, security"
   links = [
     { email = "mailto:ardya@suryadina.com" },
   #   { link = "https://link-to-some-website.com/" },
