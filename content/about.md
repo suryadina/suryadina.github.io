@@ -2,8 +2,6 @@
 title: "About me"
 layout: "simple"
 ---
-This page content is now full-width.
-
 
 Hi all, 
 
