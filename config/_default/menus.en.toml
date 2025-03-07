@@ -53,5 +53,5 @@
 
 [[footer]]
   name = "About"
-  pageRef = "posts"
+  pageRef = "about"
   weight = 10
