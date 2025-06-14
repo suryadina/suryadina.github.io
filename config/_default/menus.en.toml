@@ -21,6 +21,11 @@
   weight = 10
 
 [[main]]
+  name = "Tools"
+  pageRef = "tools"
+  weight = 20
+
+[[main]]
   identifier = "search"
   weight = 99
   [main.params]
