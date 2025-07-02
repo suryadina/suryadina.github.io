@@ -3,13 +3,42 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
     
+  
+    
+  
+    
       <url>
-            <loc>http://localhost:1313/</loc>
+            <loc>https://suryadina.com/tools/qr-code-generator/</loc>
+            <lastmod>2025-01-14T00:00:00+00:00</lastmod>
           </url>
     
   
     
   
+    
+      <url>
+            <loc>https://suryadina.com/</loc>
+            <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+          </url>
+    
+  
+    
+  
+    
+  
+    
+  
+    
+      <url>
+            <loc>https://suryadina.com/tools/</loc>
+            <lastmod>2025-01-14T00:00:00+00:00</lastmod>
+          </url>
+    
+  
+    
+      <url>
+            <loc>https://suryadina.com/about/</loc>
+          </url>
     
   
 </urlset>
