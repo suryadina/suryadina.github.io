@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools on suryadina.com</title>
-    <link>https://suryadina.com/tools/</link>
+    <link>http://localhost:1313/tools/</link>
     <description>Recent content in Tools on suryadina.com</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Tue, 14 Jan 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://suryadina.com/tools/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>QR Code Generator</title>
-      <link>https://suryadina.com/tools/qr-code-generator/</link>
+      <link>http://localhost:1313/tools/qr-code-generator/</link>
       <pubDate>Tue, 14 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>https://suryadina.com/tools/qr-code-generator/</guid>
+      <guid>http://localhost:1313/tools/qr-code-generator/</guid>
       <description>🔳 QR Code Generator Enter URL: QR Code Size: 200x200 px 300x300 px 400x400 px 500x500 px Generate QR Code Download QR Code Generated for URL:</description>
     </item>
   </channel>
