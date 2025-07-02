@@ -5,7 +5,7 @@ layout: "simple"
 
 Hi all, 
 
-My name is Ardya Suryadinata. I created this website to share my notes about cybersecurity. Until now, I have been learning so much from others in the community who share their amazing journeys and notes. Therefore, I'd like to do the same. I hope you can find something valuable in this website.
+I created this website to share my notes about cybersecurity. Until now, I have been learning so much from others in the community who share their amazing journeys and notes. Therefore, I'd like to do the same. I hope you can find something valuable in this website.
 
 ### My story
 
