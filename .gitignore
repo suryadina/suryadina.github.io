@@ -1,2 +1,6 @@
 *.ini
 *.lock
+
+# Hugo generated files
+public/
+resources/
