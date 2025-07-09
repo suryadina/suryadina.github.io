@@ -35,6 +35,7 @@ fingerprintAlgorithm = "sha256"
   layout = "page" # valid options: page, profile, custom
   showRecent = true
   recentLimit = 5
+  mainSections = ["posts"]
 
 [article]
   showDate = true
