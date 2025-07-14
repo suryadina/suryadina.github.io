@@ -7,6 +7,7 @@ tags: ["jwt", "authentication", "templates", "codeigniter", "default-credentials
 draft: false
 ---
 
+![Description of image](/images/posts/jwt-secret/image-1.jpeg)
 In today's fast-paced development environment, organizations constantly seek ways to accelerate their software delivery while managing limited resources. One increasingly popular approach is leveraging third-party services and building applications based on pre-built templates from online marketplaces. This practice, when executed properly, can dramatically reduce development time and costs, especially for organizations with constrained budgets or tight deadlines.
 
 However, beneath this convenience lies a potential security minefield that many developers unknowingly navigate. This is the story of how a single oversight in template customization exposed a vulnerability that could compromise not just one application, but potentially hundreds of others built from the same foundation.
@@ -28,6 +29,8 @@ A JSON Web Token is a compact, URL-safe means of representing claims to be trans
 ```
 header.payload.signature
 ```
+
+![Description of image](/images/posts/jwt-secret/image-2.png)
 
 - **Header**: Contains metadata about the token type and signing algorithm
 - **Payload**: Contains the actual claims (user ID, permissions, expiration time)
