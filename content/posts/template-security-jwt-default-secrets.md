@@ -64,7 +64,11 @@ This particular penetration test was conducted using a white-box approach, meani
 
 As I examined the authentication mechanisms within the source code, I discovered something concerning: the JWT secret used for token generation had a distinctly "template-like" appearance. The value `"template-name-api-token-handler"` immediately raised suspicions—it looked exactly like a placeholder that a template developer would use, with its generic naming convention and descriptive structure.
 
+![Description of image](/images/posts/jwt-secret/image-3.png)
+
 To confirm my suspicions, I approached the client with a direct question: had they changed the default JWT secret during their implementation? The response was telling—they couldn't provide a definitive answer. This uncertainty, combined with the template-like secret I had already discovered in the source code, confirmed that a deeper investigation was warranted.
+
+![Description of image](/images/posts/jwt-secret/image-4.png)
 
 ## The Dual Nature of Modern Authentication
 
@@ -77,6 +81,8 @@ As I began examining the application, I encountered something increasingly commo
 The existence of this dual system created an interesting dynamic. Most clients and developers focus primarily on the web interface—it's what users see and interact with daily. The API layer, while potentially powerful, often remains in the background, sometimes forgotten or considered "future functionality."
 
 This oversight is understandable but dangerous. In security, forgotten or unused functionality often becomes the weakest link.
+
+![Description of image](/images/posts/jwt-secret/image-5.png)
 
 ## The Subtle Signs of Trouble
 
@@ -100,12 +106,15 @@ The demo site, intended to showcase the template's features, included:
 I authenticated against the demo site and extracted a JWT token:
 
 ```bash
-curl -X GET "https://demo.template-site.com/api/login?username=admin&password=demo123"
+curl -X GET "https://demo.template-site.com/api/login?email=admin@example&password=1234"
 ```
+
+![Description of image](/images/posts/jwt-secret/image-6.png)
+![Description of image](/images/posts/jwt-secret/image-7.png)
 
 Then came the moment of truth. When I compared the JWT tokens from the demo site with those from the target application, my suspicions were confirmed. The tokens shared:
 - **Identical signing algorithm** (HS256)
-- **Interchangeable validity** - tokens from one system worked on the other
+- **Interchangeable validity** - tokens from one system worked on the other, confirming that the same secret is used
 - **Predictable user structures** - simple incremental user IDs (1, 2, 3...)
 
 This last point was particularly significant. Upon decoding the JWT payload, I discovered that user identification followed a painfully simple pattern that would prove crucial for the exploitation phase.
@@ -120,15 +129,18 @@ With the default secret confirmed and the predictable user ID structure identifi
 
 The application provided an API endpoint to retrieve user profiles based on the user ID claimed in the JWT token. Combined with the predictable incremental user IDs, this created an opportunity for systematic enumeration.
 
-Using Burp Suite's Intruder tool, I crafted JWT tokens for incremental user IDs and systematically tested hundreds of them against the profile API endpoint. This process allowed me to map out the user base and identify accounts with administrative privileges.
+![Description of image](/images/posts/jwt-secret/image-8.png)
+![Description of image](/images/posts/jwt-secret/image-9.png)
 
-The secret value `"template-name-api-token-handler"` was clearly a placeholder that should have been changed during deployment but remained unchanged in the production environment. This generic, template-style naming convention was a clear indicator that the default configuration had never been properly customized.
+Using Burp Suite's Intruder tool, I systematically tested hundreds of them against the profile API endpoint. This process allowed me to map out the user base and identify accounts with administrative privileges. In my case, I know that the `userId` of the admin account is 193. 
+
+![Description of image](/images/posts/jwt-secret/image-10.png)
 
 ### Step 2: Account Takeover via Email Manipulation
 
-Once I had identified an administrator account, the next phase involved leveraging another API endpoint that allowed users to update their email addresses. This seemingly innocent functionality became the key to complete account takeover:
+Once I had identified an administrator account, the next phase involved leveraging another API endpoint that allowed users to update their email addresses. This seemingly innocent functionality became the key to complete account takeover.
 
-
+![Description of image](/images/posts/jwt-secret/image-11.png)
 
 ### Step 3: Password Reset and Complete Access
 
@@ -140,6 +152,8 @@ With control over the administrator's email address, I could now initiate a pass
 4. **Complete the password reset process** to gain legitimate access to the administrator account
 
 This multi-step attack chain transformed a JWT secret vulnerability into complete administrative access to the application, demonstrating how multiple seemingly minor security issues can compound into critical vulnerabilities.
+
+![Description of image](/images/posts/jwt-secret/image-12.png)
 
 ### The Complete Attack Flow
 
