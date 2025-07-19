@@ -14,7 +14,7 @@ title = "suryadina.com"
 
 [params.author]
   name = "Ardya (@suryadina)"
-  image = "img/suryadina.png"
+  image = "images/suryadina.png"
   headline = "real personal docs, not an AI"
   bio = "coffee, tech, security"
   links = [
