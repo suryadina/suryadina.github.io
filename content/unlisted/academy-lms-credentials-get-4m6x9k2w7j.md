@@ -4,6 +4,13 @@ date: 2025-07-20
 tags: ["security", "information-disclosure", "academy-lms", "credentials"]
 categories: ["Security Research"]
 draft: false
+url: "/academy-lms-credentials-get-4m6x9k2w7j/"
+_build:
+  list: false
+  render: true
+  publishResources: true
+sitemap:
+  disable: true
 ---
 
 ## Overview

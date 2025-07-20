@@ -4,6 +4,13 @@ date: 2025-07-20
 tags: ["security", "jwt", "academy-lms", "vulnerability"]
 categories: ["Security Research"]
 draft: false
+url: "/academy-lms-jwt-secret-7k9m2x4p8q/"
+_build:
+  list: false
+  render: true
+  publishResources: true
+sitemap:
+  disable: true
 ---
 
 ## Overview

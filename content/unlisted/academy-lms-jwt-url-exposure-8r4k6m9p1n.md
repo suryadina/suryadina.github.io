@@ -4,6 +4,13 @@ date: 2025-07-20
 tags: ["security", "jwt", "academy-lms", "information-disclosure"]
 categories: ["Security Research"]
 draft: false
+url: "/academy-lms-jwt-url-exposure-8r4k6m9p1n/"
+_build:
+  list: false
+  render: true
+  publishResources: true
+sitemap:
+  disable: true
 ---
 
 ## Overview
