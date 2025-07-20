@@ -4,6 +4,13 @@ date: 2025-07-20
 tags: ["security", "brute-force", "academy-lms", "password-reset"]
 categories: ["Security Research"]
 draft: false
+url: "/academy-lms-reset-bruteforce-5q8w2e7t9y/"
+_build:
+  list: false
+  render: true
+  publishResources: true
+sitemap:
+  disable: true
 ---
 
 ## Overview

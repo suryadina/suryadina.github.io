@@ -4,6 +4,13 @@ date: 2025-07-20
 tags: ["security", "privilege-escalation", "academy-lms", "vulnerability"]
 categories: ["Security Research"]
 draft: false
+url: "/academy-lms-instructor-escalation-3n7b9f2w5k/"
+_build:
+  list: false
+  render: true
+  publishResources: true
+sitemap:
+  disable: true
 ---
 
 ## Overview

@@ -4,6 +4,13 @@ date: 2025-07-20
 tags: ["security", "session-fixation", "academy-lms", "authentication"]
 categories: ["Security Research"]
 draft: false
+url: "/academy-lms-session-fixation-1t8v5n3q6h/"
+_build:
+  list: false
+  render: true
+  publishResources: true
+sitemap:
+  disable: true
 ---
 
 ## Overview
