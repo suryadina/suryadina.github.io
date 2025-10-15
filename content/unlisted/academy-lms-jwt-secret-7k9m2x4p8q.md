@@ -19,7 +19,7 @@ A critical security vulnerability has been discovered in Academy LMS versions up
 
 ## Technical Details
 
-**CVE ID:** Pending Assignment  
+**CVE ID:** [CVE-2025-56749](https://nvd.nist.gov/vuln/detail/CVE-2025-56749)  
 **CVSS Score:** 9.3 (Critical)  
 **Affected Versions:** Academy LMS ≤ v5.13  
 **Vulnerability Type:** Authentication Bypass via Hardcoded Credentials  
