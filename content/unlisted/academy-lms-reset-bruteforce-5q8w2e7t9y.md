@@ -19,7 +19,7 @@ A security vulnerability has been identified in Academy LMS versions up to and i
 
 ## Technical Details
 
-**CVE ID:** Pending Assignment  
+**CVE ID:** [CVE-2025-56748](https://nvd.nist.gov/vuln/detail/CVE-2025-56748)  
 **CVSS Score:** 6.3 (Medium)  
 **Affected Versions:** Academy LMS ≤ v5.13  
 **Vulnerability Type:** Brute Force / Insufficient Entropy  
