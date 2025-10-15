@@ -19,7 +19,7 @@ A significant privilege escalation vulnerability has been identified in Academy 
 
 ## Technical Details
 
-**CVE ID:** Pending Assignment  
+**CVE ID:** CVE-2025-56747 https://nvd.nist.gov/vuln/detail/CVE-2025-56747  
 **CVSS Score:** 8.6 (High)  
 **Affected Versions:** Academy LMS ≤ v5.13  
 **Vulnerability Type:** Privilege Escalation / Access Control Bypass  
