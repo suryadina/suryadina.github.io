@@ -19,7 +19,7 @@ A session fixation vulnerability has been identified in Academy LMS versions up 
 
 ## Technical Details
 
-**CVE ID:** Pending Assignment  
+**CVE ID:** [CVE-2025-56746](https://nvd.nist.gov/vuln/detail/CVE-2025-56746)  
 **CVSS Score:** 2.3 (Low)  
 **Affected Versions:** Academy LMS ≤ v5.13  
 **Vulnerability Type:** Session Fixation  
