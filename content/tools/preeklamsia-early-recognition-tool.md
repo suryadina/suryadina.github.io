@@ -46,7 +46,8 @@ categories: ["tools"]
     .pert-field input[type="text"],
     .pert-field input[type="date"],
     .pert-field input[type="number"],
-    .pert-field select {
+    .pert-field select,
+    .pert-field textarea {
         width: 100%;
         padding: 11px;
         border: 2px solid #ddd;
@@ -57,8 +58,14 @@ categories: ["tools"]
         color: #333;
         transition: border-color 0.2s;
     }
+    .pert-field textarea {
+        font-family: inherit;
+        resize: vertical;
+        min-height: 48px;
+    }
     .pert-field input:focus,
-    .pert-field select:focus {
+    .pert-field select:focus,
+    .pert-field textarea:focus {
         outline: none;
         border-color: #764ba2;
     }
@@ -330,6 +337,12 @@ categories: ["tools"]
         </div>
       </div>
 
+      <div class="pert-section">Diagnosa <span class="pert-hint">catatan bebas, opsional</span></div>
+      <div class="pert-field">
+        <label for="diagnosa">Diagnosa</label>
+        <textarea id="diagnosa" rows="2" placeholder="cth. Preeklamsia berat, suspek impending eklamsia"></textarea>
+      </div>
+
       <button class="pert-btn" onclick="pertEvaluate()">Lihat Hasil</button>
       <button class="pert-btn secondary" onclick="pertReset()">Reset</button>
     </form>
@@ -406,7 +419,7 @@ categories: ["tools"]
     'Waktu Simpan', 'Tanggal Kunjungan', 'Nama', 'Alamat',
     'Kesadaran', 'Sesak Nafas', 'Nyeri Kepala', 'Pandangan',
     'Nyeri Dada/Abdomen', 'Berkemih', 'Kondisi Janin', 'Protein Urine',
-    'TD Sistole', 'TD Diastole', 'Nadi', 'Nafas (RR)', 'Saturasi O2', 'Hasil'
+    'TD Sistole', 'TD Diastole', 'Nadi', 'Nafas (RR)', 'Saturasi O2', 'Hasil', 'Diagnosa'
   ];
 
   function val(id) { return document.getElementById(id).value; }
@@ -507,7 +520,8 @@ categories: ["tools"]
       'Nadi': val('nadi'),
       'Nafas (RR)': val('nafas'),
       'Saturasi O2': val('saturasi'),
-      'Hasil': LABEL[overall]
+      'Hasil': LABEL[overall],
+      'Diagnosa': val('diagnosa')
     };
 
     var saveBtn = document.getElementById('pertSaveBtn');
