@@ -598,8 +598,10 @@ categories: ["tools"]
     hist.forEach(function (rec) {
       lines.push(COLS.map(function (c) { return csvCell(rec[c]); }).join(','));
     });
-    // CRLF line endings + UTF-8 BOM so Excel reads accents/° correctly.
-    var csv = '﻿' + lines.join('\r\n');
+    // CRLF line endings, UTF-8 without BOM. (A BOM helps desktop Excel but shows up
+    // as literal "ï»¿" characters in some mobile spreadsheet apps; the data is plain
+    // text with no accented characters, so the BOM is unnecessary.)
+    var csv = lines.join('\r\n');
 
     var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     var url = URL.createObjectURL(blob);
