@@ -3,14 +3,23 @@ title: "About me"
 layout: "simple"
 ---
 
-Hi all, 
+Hi there 👋
 
-I created this website to share my notes about cybersecurity. Until now, I have been learning so much from others in the community who share their amazing journeys and notes. Therefore, I'd like to do the same. I hope you can find something valuable in this website.
+I'm Ardya — a security engineer who learns out loud. This site is where I keep
+my notes on cybersecurity: the bugs I find interesting, the things I break (with
+permission), and whatever I'm currently figuring out. I've learned an enormous
+amount from people in the community who share their journeys openly, so this is
+me paying it forward. I hope you find something useful here.
 
-### My story
+Off the clock, you'll usually find me with a cup of coffee, reading about tech,
+or building small tools that scratch an itch.
 
-You can find my public profile on [Linkedin](https://linkedin.com/in/suryadina).
+### Find me
 
-Please let me know via email (link listed below) if you are interested to hear more from me. 
+- **LinkedIn** — [linkedin.com/in/suryadina](https://linkedin.com/in/suryadina)
+- **GitHub** — [github.com/suryadina](https://github.com/suryadina)
+- **Email** — the link under my name on the [home page](/)
+
+If you'd like to hear more from me, drop a line. Always happy to talk shop.
 
 **Ardya**

@@ -1,6 +1,7 @@
 ---
-title: "Posts"
-description: "Cybersecurity insights and learning notes"
+title: "Writings"
+description: "Cybersecurity write-ups, field notes, and things I learned the hard way."
 ---
 
-This section contains my blog posts about cybersecurity, tools, and learning experiences.
+Security write-ups and learning notes — pentests, broken crypto, JWT footguns,
+and the occasional rabbit hole. Mostly notes-to-self that turned out worth sharing.

@@ -9,13 +9,13 @@ title = "suryadina.com"
 [params]
   dateFormat = "2 January 2006"
 
-  mainSections = ["section1", "section2"]
-  description = "☕ 💻 and security"
+  mainSections = ["posts"]
+  description = "Coffee, tech, and security — field notes from Ardya (@suryadina)."
 
 [params.author]
   name = "Ardya (@suryadina)"
   image = "images/suryadina.png"
-  headline = "real personal docs, not an AI"
+  headline = "100% human · 80% caffeine · breaks things on purpose"
   bio = "coffee, tech, security"
   links = [
     { email = "mailto:ardya@suryadina.com" },

@@ -1,0 +1,92 @@
+/* suryadina.com — custom polish layered over Congo (loaded last).
+   Theme: espresso (warm amber accent, coffee-toned neutrals). */
+
+/* --- Profile avatar: warm amber ring + soft glow --- */
+.home-profile img,
+section.not-prose > picture img,
+section.not-prose img.rounded-full {
+  width: 9.5rem;
+  height: 9.5rem;
+  object-fit: cover;
+  box-shadow:
+    0 0 0 3px rgb(var(--color-primary-500) / 0.9),
+    0 0 0 6px rgb(var(--color-neutral-50));
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.dark section.not-prose img.rounded-full,
+.dark section.not-prose > picture img {
+  box-shadow:
+    0 0 0 3px rgb(var(--color-primary-500) / 0.95),
+    0 0 0 6px rgb(var(--color-neutral-900)),
+    0 14px 40px -12px rgb(var(--color-primary-500) / 0.45);
+}
+section.not-prose img.rounded-full:hover,
+section.not-prose > picture img:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* --- Headline: warmer tone + a touch of breathing room --- */
+section.not-prose h1 {
+  letter-spacing: -0.02em;
+}
+section.not-prose h2 {
+  margin-top: 0.35rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* --- Author links: roomier tap targets, smoother accent --- */
+.flex.flex-wrap a {
+  padding-inline: 0.45rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* --- Soft warm radial backdrop behind the hero (dark mode) --- */
+.dark body {
+  background-image:
+    radial-gradient(60rem 32rem at 50% -8rem,
+      rgb(var(--color-primary-500) / 0.10), transparent 70%);
+  background-repeat: no-repeat;
+}
+
+/* --- Links: gentle underline-on-hover for prose --- */
+.prose a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+/* --- Card-ish hover lift for article list rows --- */
+article a:hover h2,
+.prose h2 a:hover {
+  color: rgb(var(--color-primary-600));
+}
+
+/* --- Section landing CTA buttons (used on profile bio) --- */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.3rem 0.3rem 0 0;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgb(var(--color-primary-500) / 0.45);
+  color: rgb(var(--color-primary-700));
+  background: rgb(var(--color-primary-500) / 0.06);
+  transition: all 0.2s ease;
+}
+.btn-pill:hover {
+  background: rgb(var(--color-primary-500));
+  border-color: rgb(var(--color-primary-500));
+  color: #1c1610;
+  transform: translateY(-1px);
+}
+.dark .btn-pill {
+  color: rgb(var(--color-primary-300));
+}
+.dark .btn-pill:hover {
+  color: #1c1610;
+}
