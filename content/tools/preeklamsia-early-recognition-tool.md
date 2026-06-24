@@ -163,9 +163,41 @@ categories: ["tools"]
         border-top: 1px solid #eee;
         padding-top: 14px;
     }
+    .pert-btn.danger { color: #b01e54; }
+    .pert-saverow {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .pert-savemsg {
+        font-size: 14px;
+        color: #2e9e5b;
+        font-weight: 600;
+    }
+    .pert-history {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .pert-history-count { font-size: 14px; color: #555; }
+    .pert-history-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pert-history-actions .pert-btn { margin: 0; padding: 9px 16px; font-size: 14px; }
+    .pert-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
     .hidden { display: none; }
     @media print {
-        .pert-btn, .pert-disclaimer { display: none; }
+        .pert-btn, .pert-disclaimer, .pert-saverow, .pert-history { display: none; }
     }
 </style>
 
@@ -304,10 +336,25 @@ categories: ["tools"]
 
     <div id="pertResult" class="pert-result hidden"></div>
 
+    <div id="pertSaveRow" class="pert-saverow hidden">
+      <button class="pert-btn" id="pertSaveBtn" onclick="pertSave()">💾 Simpan ke Riwayat</button>
+      <span id="pertSaveMsg" class="pert-savemsg"></span>
+    </div>
+
+    <div class="pert-history">
+      <span class="pert-history-count">Riwayat tersimpan: <strong id="pertCount">0</strong> entri</span>
+      <span class="pert-history-actions">
+        <button class="pert-btn secondary" id="pertCsvBtn" onclick="pertDownloadCsv()">⬇️ Unduh CSV</button>
+        <button class="pert-btn secondary danger" id="pertClearBtn" onclick="pertClearHistory()">Hapus Riwayat</button>
+      </span>
+    </div>
+
     <p class="pert-disclaimer">
       <strong>Disclaimer:</strong> Alat ini adalah bantuan skrining dini (early warning), <em>bukan</em> alat diagnosis.
       Hasil tidak menggantikan penilaian dan keputusan klinis tenaga kesehatan. Selalu lakukan evaluasi langsung
-      terhadap pasien. Semua perhitungan dilakukan di perangkat Anda — tidak ada data yang dikirim atau disimpan.
+      terhadap pasien. Semua perhitungan dilakukan di perangkat Anda. Riwayat yang Anda <em>simpan</em> tersimpan
+      secara lokal di browser perangkat ini (localStorage) — tidak dikirim ke server mana pun. Gunakan tombol
+      <em>Hapus Riwayat</em> untuk menghapusnya.
     </p>
   </div>
 </div>
@@ -351,7 +398,25 @@ categories: ["tools"]
     'Segera pindahkan ke IGD dengan pemantauan ketat, lakukan evaluasi lebih lanjut, dan persiapkan kemungkinan rujuk ke FKRTL.'
   ];
 
+  var STORAGE_KEY = 'pert-riwayat-v1';
+  var lastRecord = null;   // record for the most recent evaluation, awaiting save
+
+  // CSV column order. Keys must match the record object built in pertEvaluate.
+  var COLS = [
+    'Waktu Simpan', 'Tanggal Kunjungan', 'Nama', 'Alamat',
+    'Kesadaran', 'Sesak Nafas', 'Nyeri Kepala', 'Pandangan',
+    'Nyeri Dada/Abdomen', 'Berkemih', 'Kondisi Janin', 'Protein Urine',
+    'TD Sistole', 'TD Diastole', 'Nadi', 'Nafas (RR)', 'Saturasi O2', 'Hasil'
+  ];
+
   function val(id) { return document.getElementById(id).value; }
+
+  // Selected option text for a <select>, or '' if nothing chosen.
+  function selText(id) {
+    var el = document.getElementById(id);
+    if (!el || el.value === '') return '';
+    return el.options[el.selectedIndex].text;
+  }
 
   function pushNum(flags, id, label, scoreFn, unit) {
     var raw = val(id).trim();
@@ -394,6 +459,8 @@ categories: ["tools"]
       box.className = 'pert-result yellow';
       box.innerHTML = '<h3>Belum ada data</h3><p class="pert-action">Isi minimal satu parameter untuk melihat hasil.</p>';
       box.classList.remove('hidden');
+      lastRecord = null;
+      document.getElementById('pertSaveRow').classList.add('hidden');
       box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       return;
     }
@@ -420,13 +487,143 @@ categories: ["tools"]
       '<p class="pert-action">' + ACTION[overall] + '</p>' +
       flagsHtml;
     box.classList.remove('hidden');
+
+    // Build the record for this evaluation (Waktu Simpan is added on save).
+    lastRecord = {
+      'Waktu Simpan': '',
+      'Tanggal Kunjungan': val('tanggal'),
+      'Nama': val('nama'),
+      'Alamat': val('alamat'),
+      'Kesadaran': selText('kesadaran'),
+      'Sesak Nafas': selText('sesak'),
+      'Nyeri Kepala': selText('nyerikepala'),
+      'Pandangan': selText('pandangan'),
+      'Nyeri Dada/Abdomen': selText('nyeridada'),
+      'Berkemih': selText('berkemih'),
+      'Kondisi Janin': selText('janin'),
+      'Protein Urine': selText('protein'),
+      'TD Sistole': val('sistole'),
+      'TD Diastole': val('diastole'),
+      'Nadi': val('nadi'),
+      'Nafas (RR)': val('nafas'),
+      'Saturasi O2': val('saturasi'),
+      'Hasil': LABEL[overall]
+    };
+
+    var saveBtn = document.getElementById('pertSaveBtn');
+    saveBtn.disabled = false;
+    document.getElementById('pertSaveMsg').textContent = '';
+    document.getElementById('pertSaveRow').classList.remove('hidden');
+
     box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   };
 
   window.pertReset = function () {
     document.getElementById('pertForm').reset();
     document.getElementById('pertResult').classList.add('hidden');
+    document.getElementById('pertSaveRow').classList.add('hidden');
+    lastRecord = null;
   };
+
+  // --- Riwayat (localStorage) + ekspor CSV ---
+
+  function loadHistory() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      var arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveHistory(arr) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function nowStamp() {
+    var d = new Date();
+    return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) +
+           ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds());
+  }
+
+  function updateHistoryUI() {
+    var n = loadHistory().length;
+    document.getElementById('pertCount').textContent = n;
+    document.getElementById('pertCsvBtn').disabled = (n === 0);
+    document.getElementById('pertClearBtn').disabled = (n === 0);
+  }
+
+  window.pertSave = function () {
+    if (!lastRecord) return;
+    var rec = {};
+    for (var k in lastRecord) { rec[k] = lastRecord[k]; }
+    rec['Waktu Simpan'] = nowStamp();
+
+    var hist = loadHistory();
+    hist.push(rec);
+    var ok = saveHistory(hist);
+
+    var msg = document.getElementById('pertSaveMsg');
+    if (ok) {
+      msg.style.color = '#2e9e5b';
+      msg.textContent = '✓ Tersimpan (' + hist.length + ' entri)';
+      document.getElementById('pertSaveBtn').disabled = true;  // prevent duplicate save
+      lastRecord = null;                                       // guard against re-save of same entry
+    } else {
+      msg.style.color = '#d6336c';
+      msg.textContent = 'Gagal menyimpan (penyimpanan browser penuh atau diblokir).';
+    }
+    updateHistoryUI();
+  };
+
+  // RFC-4180 style escaping: wrap in quotes and double any inner quotes.
+  function csvCell(v) {
+    var s = (v === null || v === undefined) ? '' : String(v);
+    return '"' + s.replace(/"/g, '""') + '"';
+  }
+
+  window.pertDownloadCsv = function () {
+    var hist = loadHistory();
+    if (hist.length === 0) return;
+
+    var lines = [COLS.map(csvCell).join(',')];
+    hist.forEach(function (rec) {
+      lines.push(COLS.map(function (c) { return csvCell(rec[c]); }).join(','));
+    });
+    // CRLF line endings + UTF-8 BOM so Excel reads accents/° correctly.
+    var csv = '﻿' + lines.join('\r\n');
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var d = new Date();
+    var fname = 'pert-riwayat-' + d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()) + '.csv';
+
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = fname;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+  };
+
+  window.pertClearHistory = function () {
+    if (loadHistory().length === 0) return;
+    if (!window.confirm('Hapus semua riwayat yang tersimpan di perangkat ini? Tindakan ini tidak dapat dibatalkan.')) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    updateHistoryUI();
+  };
+
+  // Initialise history counter on load.
+  updateHistoryUI();
 })();
 </script>
 {{< /rawhtml >}}
