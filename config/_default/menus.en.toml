@@ -26,6 +26,11 @@
   weight = 20
 
 [[main]]
+  name = "Coffee & Tea"
+  url = "/brews/"
+  weight = 25
+
+[[main]]
   identifier = "search"
   weight = 99
   [main.params]
