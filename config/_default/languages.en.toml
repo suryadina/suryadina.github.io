@@ -10,13 +10,13 @@ title = "suryadina.com"
   dateFormat = "2 January 2006"
 
   mainSections = ["posts"]
-  description = "Coffee, tech, and security — field notes from Ardya (@suryadina)."
+  description = "Coffee, tea, tech, and security — field notes from Ardya (@suryadina)."
 
 [params.author]
   name = "Ardya (@suryadina)"
   image = "images/suryadina.png"
-  headline = "100% human · 80% caffeine · breaks things on purpose"
-  bio = "coffee, tech, security"
+  headline = "100% human · runs on coffee & tea · breaks things on purpose"
+  bio = "coffee, tea, tech, security"
   links = [
     { email = "mailto:ardya@suryadina.com" },
   #   { link = "https://link-to-some-website.com/" },

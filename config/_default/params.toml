@@ -21,8 +21,8 @@ fingerprintAlgorithm = "sha256"
 
 [header]
   layout = "basic" # valid options: basic, hamburger, hybrid, custom
-  # logo = "img/logo.jpg"
-  # logoDark = "img/dark-logo.jpg"
+  logo = "images/logo.png"
+  # logoDark = "img/dark-logo.jpg"  # not needed — amber mark works on light & dark
   showTitle = true
 
 [footer]

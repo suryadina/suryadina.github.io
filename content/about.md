@@ -11,8 +11,8 @@ permission), and whatever I'm currently figuring out. I've learned an enormous
 amount from people in the community who share their journeys openly, so this is
 me paying it forward. I hope you find something useful here.
 
-Off the clock, you'll usually find me with a cup of coffee, reading about tech,
-or building small tools that scratch an itch.
+Off the clock, you'll usually find me with a cup of coffee (or tea — I've come
+around to both), reading about tech, or building small tools that scratch an itch.
 
 ### Find me
 
