@@ -2,6 +2,7 @@
 title: "Preeklamsia Early Recognition Tool (PERT)"
 date: 2026-06-24T00:00:00Z
 draft: false
+showDate: false
 description: "Form skrining dini preeklamsia. Isi tanda dan gejala pasien, lalu dapatkan hasil triase: Normal (hijau), Hati-hati (kuning), atau Bahaya/Urgen (merah)."
 tags: ["tools", "kesehatan", "preeklamsia", "skrining"]
 categories: ["tools"]
